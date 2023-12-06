@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-numpy = "*"
-pandas = "*"
+flask = "*"
+flask_sqlalchemy = "*"
+flask_migrate = "*"
 
 [requires]
 python_version = "3"

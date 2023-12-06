@@ -2,7 +2,7 @@ name: python-test
 run-name: Triggered by ${{ github.actor }} on ${{ github.event_name }} event
 on: [push, pull_request]
 jobs:
-  python-version-test:
+  pipenv_py:
     runs-on: ubuntu-latest
     steps:
       - name: setup python 
@@ -27,3 +27,29 @@ jobs:
           sleep 10
       - name: Check completed
         run: echo "Arigato ${{ github.actor }}. Job is completed now"   
+  flask_app_py:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: github checkout
+        uses: actions/checkout@v4
+      - name: checking files
+        run: |
+          ls -lat
+      - name: check-python-version
+        run: python --version
+      - name: install pipenv
+        run: |
+          pip install pipenv 
+          pipenv install 
+          pipenv graph
+          pipenv run flask db init
+          pipenv run flask db migrate -m "Initial migration"
+          pipenv run flask db upgrade
+      - name: run flask app 
+        run: |
+          pipenv run python3 app.py
+            
