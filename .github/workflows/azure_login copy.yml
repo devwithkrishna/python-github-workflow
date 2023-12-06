@@ -1,0 +1,30 @@
+name: azure login copy
+run-name: azure login 
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'scenario tags'
+        required: true
+        type: string
+jobs:
+  azure-login:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+      - name: az account show
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az account show -o yaml
+      - name: Print input
+        run: |
+          echo "Input is: ${{ github.event.inputs.tags }}"
+
