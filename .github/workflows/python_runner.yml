@@ -1,0 +1,27 @@
+name: python-test
+run-name: Triggered by ${{ github.actor }} on ${{ github.event_name }} event
+on: [push, pull_request]
+jobs:
+  python-version-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.2'
+      - name: checking files
+        run: |
+          ls -lat
+      - name: check-python-version
+        run: python --version
+      - name: install pipenv
+        run: |
+          pip install pipenv 
+          pipenv install 
+          pipenv graph
+      - name: Execute python program
+        run: |
+          pipenv run python3 pipenv.py
+          sleep 10
+      - name: Check completed
+        run: echo "Arigato ${{ github.actor }}. Job is completed now"   
