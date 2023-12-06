@@ -9,6 +9,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.11.2'
+      - name: github checkout
+        uses: actions/checkout@v4
       - name: checking files
         run: |
           ls -lat
