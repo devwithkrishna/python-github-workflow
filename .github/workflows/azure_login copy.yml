@@ -18,6 +18,8 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          enable-AzPSSession: true
+
       - name: az account show
         uses: azure/CLI@v1
         with:
