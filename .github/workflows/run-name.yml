@@ -1,5 +1,4 @@
 name: run-name
-run-name: Triggered by ${{ github.actor }} on ${{ github.event_name }} event
 on: 
   workflow_dispatch:
     inputs:
@@ -7,9 +6,9 @@ on:
         description: 'scenario tags'
         required: true
         type: string
+run-name: ${{github.actor}} ${{inputs.tags}}
 jobs:
   pipenv_py: 
-    run-name: ${{github.actor}} ${{inputs.tag}}
     runs-on: ubuntu-latest
     steps:
       - name: setup python 
