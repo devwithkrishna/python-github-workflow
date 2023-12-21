@@ -1,4 +1,4 @@
-name: python-test
+name: run-name
 run-name: Triggered by ${{ github.actor }} on ${{ github.event_name }} event
 on: 
   workflow_dispatch:
