@@ -1,0 +1,27 @@
+name: python-test
+run-name: Triggered by ${{ github.actor }} on ${{ github.event_name }} event
+on: 
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'scenario tags'
+        required: true
+        type: string
+jobs:
+  pipenv_py: 
+    run-name: ${{github.actor}} ${{inputs.tag}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.2'
+      - name: github checkout
+        uses: actions/checkout@v4
+      - name: checking files
+        run: |
+          ls -lat
+      - name: check-python-version
+        run: python --version
+      - name: Check completed
+        run: echo "Arigato ${{ github.actor }}. Job is completed now"   
