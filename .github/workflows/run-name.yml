@@ -20,6 +20,9 @@ jobs:
       - name: checking files
         run: |
           ls -lat
+      - name: check name
+        run: |
+          echo $${{ GITHUB_WORKFLOW }}
       - name: check-python-version
         run: python --version
       - name: Check completed
