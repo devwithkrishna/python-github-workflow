@@ -22,7 +22,7 @@ jobs:
           ls -lat
       - name: check name
         run: |
-          echo ${{ GITHUB_WORKFLOW }}
+          echo "The operating system on the runner is not Windows, it's $RUNNER_OS. $GITHUB_WORKFLOW"
       - name: check-python-version
         run: python --version
       - name: Check completed
