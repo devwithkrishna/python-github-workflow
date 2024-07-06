@@ -25,4 +25,4 @@ def get_repo_owner_type():
 
 owner_type = get_repo_owner_type()
 if owner_type:
-    print(f"The repository '{owner}/{repo}' is owned by a {owner_type}.")
+    print(f"The repository '{os.getenv('GITHUB_REPOSITORY')}' is owned by a {owner_type}.")
