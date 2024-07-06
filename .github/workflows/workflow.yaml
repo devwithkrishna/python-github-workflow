@@ -1,0 +1,25 @@
+name: github-owner-python
+on:
+  workflow_dispatch:
+
+jobs:
+  github-check-usertype:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: set up python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: package installations
+        run: |
+          pip install requests
+      - name: execute python program
+        env:
+          GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
+        run: |
+          python3 py.py
+      - name: Completed
+        run: |
+          echo "program completed successfully"
